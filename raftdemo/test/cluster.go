@@ -1,6 +1,7 @@
 package test
 
 import (
+	"log"
 	"raft/raftdemo/node"
 	"strconv"
 )
@@ -11,6 +12,9 @@ type Cluster struct {
 }
 
 func NewCluster(numNodes int) *Cluster {
+	// Crea il transport per la comunicazione tra i nodi
+
+	// Crea un array di nodi Raft
 	nodes := make([]*node.Node, numNodes)
 	for i := 0; i < numNodes; i++ {
 		nodes[i] = node.NewNode(strconv.Itoa(i), nil) // Passa il transport appropriato
@@ -34,4 +38,5 @@ func RunConsensusTests(cluster *Cluster) {
 	// Qui puoi implementare i test di consenso
 	// Ad esempio, inviare comandi e verificare lo stato dei nodi
 	cluster.nodes[1].Raft.Submit([]byte("set 5")) // Invia un comando di test
+	log.Println("test scrittura su nodo 1 set 5\n")
 }

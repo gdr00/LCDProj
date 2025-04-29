@@ -11,7 +11,7 @@ type Node struct {
 	Raft      consensus.Raft    // interfaccia per il protocollo Raft
 	Transport network.Transport // interfaccia per la rete
 	Log       logger.Log        // interfaccia per il log
-	State     consensus.State   // interfaccia per la macchina a stati
+	State     consensus.State   // stato del nodo (Leader, Follower, Candidate)
 }
 
 func NewNode(id string, transport network.Transport) *Node {
@@ -25,7 +25,6 @@ func NewNode(id string, transport network.Transport) *Node {
 
 func (n *Node) Start() {
 	// Avvia tick periodico + registra handler messaggi
-	n.Raft.Tick() // Avvia il tick del protocollo Raft (heartbeat)
 }
 
 func (n *Node) Stop() {

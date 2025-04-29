@@ -5,14 +5,14 @@ import "sync"
 type State int
 
 const (
-	Leader State = iota
-	Follower
+	Follower State = iota
+	Leader
 	Candidate
 )
 
 type ConsensusModule struct {
 	mu       sync.Mutex
-	state    State
+	state    State `default:"Follower"`
 	leaderId int
 	peers    []int
 }
