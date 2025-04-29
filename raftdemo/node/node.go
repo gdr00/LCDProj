@@ -26,6 +26,5 @@ func NewNode(id string, transport network.Transport) *Node {
 
 func (n *Node) Start() {
 	// Avvia tick periodico + registra handler messaggi
-	n.Raft.Tick() // Avvia il tick del protocollo Raft
-
+	n.Raft.Tick() // Avvia il tick del protocollo Raft (heartbeat)
 }
