@@ -20,8 +20,7 @@ func NewCluster(numNodes int) *Cluster {
 
 func (c *Cluster) Start() {
 	for _, n := range c.nodes {
-		n.
-			n.Start() // Avvia ogni nodo
+		n.Start() // Avvia ogni nodo
 	}
 }
 
