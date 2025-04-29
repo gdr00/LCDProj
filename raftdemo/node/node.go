@@ -2,17 +2,16 @@ package node
 
 import (
 	"raft/raftdemo/consensus"
+	"raft/raftdemo/logger"
 	"raft/raftdemo/network"
-	"raft/raftdemo/raftlog"
-	"raft/raftdemo/statemachine"
 )
 
 type Node struct {
-	ID        string                    // ID del nodo
-	Raft      consensus.Raft            // interfaccia per il protocollo Raft
-	Transport network.Transport         // interfaccia per la rete
-	Log       raftlog.Log               // interfaccia per il log
-	State     statemachine.StateMachine // interfaccia per la macchina a stati
+	ID        string            // ID del nodo
+	Raft      consensus.Raft    // interfaccia per il protocollo Raft
+	Transport network.Transport // interfaccia per la rete
+	Log       logger.Log        // interfaccia per il log
+	State     consensus.State   // interfaccia per la macchina a stati
 }
 
 func NewNode(id string, transport network.Transport) *Node {
@@ -27,4 +26,9 @@ func NewNode(id string, transport network.Transport) *Node {
 func (n *Node) Start() {
 	// Avvia tick periodico + registra handler messaggi
 	n.Raft.Tick() // Avvia il tick del protocollo Raft (heartbeat)
+}
+
+func (n *Node) Stop() {
+	// Ferma il nodo e chiude le connessioni
+	n.Transport.Close() // Chiude le connessioni di rete
 }

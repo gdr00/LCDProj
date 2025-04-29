@@ -1,20 +1,17 @@
 package main
 
-import (
-	"raft/raftdemo/network"
-	"raft/raftdemo/node"
-)
+import "raft/raftdemo/test"
 
 func main() {
-	transport := network.Newtransport()
+	// Crea un cluster di nodi
+	cluster := test.NewCluster(5)
 
-	n1 := node.NewNode("node1", transport)
-	n2 := node.NewNode("node2", transport)
-	n3 := node.NewNode("node3", transport)
+	// Avvia il cluster
+	cluster.Start()
 
-	go n1.Start()
-	go n2.Start()
-	go n3.Start()
+	// Esegui test di consenso
+	test.RunConsensusTests(cluster)
 
-	select {} // blocca per sempre
+	// Ferma il cluster
+	cluster.Stop()
 }

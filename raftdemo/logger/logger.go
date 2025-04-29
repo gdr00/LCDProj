@@ -1,4 +1,4 @@
-package raftlog
+package logger
 
 type Entry struct {
 	Term    int
