@@ -20,7 +20,8 @@ func NewCluster(numNodes int) *Cluster {
 
 func (c *Cluster) Start() {
 	for _, n := range c.nodes {
-		n.Start() // Avvia ogni nodo
+		n.
+			n.Start() // Avvia ogni nodo
 	}
 }
 
@@ -33,5 +34,5 @@ func (c *Cluster) Stop() {
 func RunConsensusTests(cluster *Cluster) {
 	// Qui puoi implementare i test di consenso
 	// Ad esempio, inviare comandi e verificare lo stato dei nodi
-	n.Raft.Submit([]byte("set 5")) // Invia un comando di test
+	cluster.nodes[1].Raft.Submit([]byte("set 5")) // Invia un comando di test
 }
