@@ -6,5 +6,3 @@ type Transport interface {
 	Broadcast(msg Message) error
 	Close() error
 }
-
-type 
