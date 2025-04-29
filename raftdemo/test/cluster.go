@@ -33,7 +33,5 @@ func (c *Cluster) Stop() {
 func RunConsensusTests(cluster *Cluster) {
 	// Qui puoi implementare i test di consenso
 	// Ad esempio, inviare comandi e verificare lo stato dei nodi
-	for _, n := range cluster.nodes {
-		n.Raft.Submit([]byte("set 5")) // Invia un comando di test
-	}
+	n.Raft.Submit([]byte("set 5")) // Invia un comando di test
 }
