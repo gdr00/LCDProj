@@ -12,6 +12,6 @@ const (
 type Message struct {
 	From string
 	To   string
-	Type string // "AppendEntries", "AppendResponse", etc.
+	Type MessageType // "AppendEntries", "AppendResponse", etc.
 	Data interface{}
 }
