@@ -8,11 +8,11 @@ import (
 )
 
 type Node struct {
-	ID        string
-	Raft      consensus.Raft
-	Transport network.Transport
-	Log       raftlog.Log
-	State     statemachine.StateMachine
+	ID        string                    // ID del nodo
+	Raft      consensus.Raft            // interfaccia per il protocollo Raft
+	Transport network.Transport         // interfaccia per la rete
+	Log       raftlog.Log               // interfaccia per il log
+	State     statemachine.StateMachine // interfaccia per la macchina a stati
 }
 
 func NewNode(id string, transport network.Transport) *Node {
@@ -26,4 +26,6 @@ func NewNode(id string, transport network.Transport) *Node {
 
 func (n *Node) Start() {
 	// Avvia tick periodico + registra handler messaggi
+	n.Raft.Tick() // Avvia il tick del protocollo Raft
+
 }

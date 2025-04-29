@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	transport := network.NewLocalTransport()
+	transport := network.Newtransport()
 
 	n1 := node.NewNode("node1", transport)
 	n2 := node.NewNode("node2", transport)
