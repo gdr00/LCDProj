@@ -35,6 +35,12 @@ func (cm *ConsensusModule) SetPeers(peers []int) {
 	cm.peers = peers
 }
 
+func (cm *ConsensusModule) GetPeers() []int {
+	cm.mu.Lock()
+	defer cm.mu.Unlock()
+	return cm.peers
+}
+
 func (cm *ConsensusModule) IsLeader() bool {
 	cm.mu.Lock()
 	defer cm.mu.Unlock()
