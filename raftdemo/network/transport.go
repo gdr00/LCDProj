@@ -1,8 +1,8 @@
 package network
 
 type Transport interface {
-	Send(msg Message, dest string) error
-	RegisterHandler(nodeID string, handler func(Message))
+	Send(msg Message) error
+	Recive() (Message, error)
 	Broadcast(msg Message) error
 	Close() error
 }
