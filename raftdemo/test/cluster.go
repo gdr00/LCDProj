@@ -12,12 +12,16 @@ type Cluster struct {
 }
 
 func NewCluster(numNodes int) *Cluster {
-	// Crea il transport per la comunicazione tra i nodi
+	// Assegna gli ID dei nodi
+	peers := make([]string, numNodes)
+	for i := 0; i < numNodes; i++ {
+		peers[i] = strconv.Itoa(i) // ID del nodo
+	}
 
 	// Crea un array di nodi Raft
 	nodes := make([]*node.Node, numNodes)
 	for i := 0; i < numNodes; i++ {
-		nodes[i] = node.NewNode(strconv.Itoa(i), nil) // Passa il transport appropriato
+		nodes[i] = node.NewNode(strconv.Itoa(i), append(peers[:i], peers[i+1:]...)) // Passo i peer escluso se stesso
 	}
 	return &Cluster{nodes: nodes}
 }

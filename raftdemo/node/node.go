@@ -14,11 +14,13 @@ type Node struct {
 	State     consensus.State   // stato del nodo (Leader, Follower, Candidate)
 }
 
-func NewNode(id string, transport network.Transport) *Node {
+func NewNode(id string, peers []string) *Node {
 	// Qui istanzierai tutte le dipendenze concrete
+	transport := network.NewChanTransport(peers) // Crea un nuovo transport
+
 	return &Node{
 		ID:        id,
-		Transport: transport,
+		Transport: transport, // Crea un nuovo transport
 		// Raft, Log, State: inizializzazioni vere da fare dopo
 	}
 }
