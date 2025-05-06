@@ -21,7 +21,7 @@ func NewCluster(numNodes int) *Cluster {
 	// Crea un array di nodi Raft
 	nodes := make([]*node.Node, numNodes)
 	for i := 0; i < numNodes; i++ {
-		nodes[i] = node.NewNode(strconv.Itoa(i), append(peers[:i], peers[i+1:]...)) // Passo i peer escluso se stesso
+		nodes[i] = node.NewNode(strconv.Itoa(i), peers) // Passo i peer incluso se stesso
 	}
 	return &Cluster{nodes: nodes}
 }
